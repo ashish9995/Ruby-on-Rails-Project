@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Companies</h1>
+
+<table cellspacing="10">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Website</th>
+    <th>Address</th>
+    <th>Employee count</th>
+    <th>Foundation year</th>
+    <th>Revenue</th>
+    <th>Synopsis</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @companies.each do |company| %>
+    <tr>
+      <td><%= company.name %></td>
+      <td><%= company.website %></td>
+      <td><%= company.address %></td>
+      <td><%= company.employee_count %></td>
+      <td><%= company.foundation_year %></td>
+      <td><%= company.revenue %></td>
+      <td><%= company.synopsis %></td>
+      <td><%= link_to 'Show', company %></td>
+      <% if @role != "househunter" %>
+        <td><%= link_to 'Edit', edit_company_path(company) %></td>
+        <td>
+          <%= button_to 'Destroy', company, method: :delete, :onclick => "return confirm('Are you sure you want to delete this company?')" %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if @role == "admin" %>
+  <%= link_to 'New Company', new_company_path %>
+  <%= link_to 'Back to Dashboard', admin_path %> <br>
+<% elsif @role == "househunter" %>
+  <%= link_to 'Back to Dashboard', househunter_path(@househunter.id) %> <br>
+<% else %>
+  <%= link_to 'Back to Dashboard', realtor_path(@realtor.id) %> <br>
+<% end %>

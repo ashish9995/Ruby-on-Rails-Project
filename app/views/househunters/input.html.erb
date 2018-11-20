@@ -1,0 +1,38 @@
+<h1>Search Houses</h1>
+<p id="notice"><%= notice %></p>
+<%=form_tag(gotosearch_path, :method => "get") do %>
+  <%= label_tag(:location, "location:") %>
+  <%= text_field_tag(:location) %><br>
+  <%= label_tag(:year_built1, "min year:") %>
+  <%= text_field_tag(:year_built1)%><br>
+  <%= label_tag(:year_built2, " max year:") %>
+  <%= text_field_tag(:year_built2)%><br>
+  <%= label_tag(:style, "style:") %>
+  <%= text_field_tag(:style) %><br>
+  <%= label_tag(:list_prize1, " min list prize:") %>
+  <%= text_field_tag(:list_prize1) %><br>
+  <%= label_tag(:list_prize2, " max list prize:") %>
+  <%= text_field_tag(:list_prize2) %><br>
+  <%= label_tag(:floor_count1, "min floor count") %>
+  <%= text_field_tag(:floor_count1) %><br>
+  <%= label_tag(:floor_count2, "max floor count") %>
+  <%= text_field_tag(:floor_count2) %><br>
+  <%= label_tag(:basement, "basement enter value as true or false:") %>
+  <%= text_field_tag(:basement) %><br>
+  <%= label_tag(:owner_name, "owner name") %>
+  <%= text_field_tag(:owner_name) %><br>
+
+  <%= submit_tag("Search") %>
+<% end %>
+
+<br>
+<%= link_to 'Back', @previous_url %>
+<br>
+
+<% if @role == "admin" %>
+  <%= link_to 'Back to Dashboard', admin_path %> <br>
+<% elsif @role == "househunter" %>
+  <%= link_to 'Back to Dashboard', househunter_path(@househunter.id) %> <br>
+<% else %>
+  <%= link_to 'Back to Dashboard', realtor_path(@realtor.id) %> <br>
+<% end %>

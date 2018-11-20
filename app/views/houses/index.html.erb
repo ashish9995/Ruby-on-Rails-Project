@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Houses</h1>
+<%= link_to 'search', input_path %>
+
+<table cellspacing="10">
+  <thead>
+  <tr>
+    <th>Company</th>
+    <th>Location</th>
+    <th>Area</th>
+    <th>Year built</th>
+    <th>Style</th>
+    <th>List prize</th>
+    <th>Floor count</th>
+    <th>Basement</th>
+    <th>Owner name</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @houses.each do |house| %>
+    <tr>
+      <td><%= house.companies_id %></td>
+      <td><%= house.location %></td>
+      <td><%= house.area %></td>
+      <td><%= house.year_built %></td>
+      <td><%= house.style %></td>
+      <td><%= house.list_prize %></td>
+      <td><%= house.floor_count %></td>
+      <td><%= house.basement %></td>
+      <td><%= house.owner_name %></td>
+      <td><%= link_to 'Show', house %></td>
+      <% if @role == "admin" %>
+        <td><%= link_to 'Edit', edit_house_path(house) %></td>
+        <td><%= button_to 'Destroy', house, method: :delete, :onclick => "return confirm('Are you sure you want to delete this house?')" %>
+        </td>
+      <% end %>
+      <% if @role == "admin" || @role=="realtor" %>
+        <td><%= link_to 'Add image', "/addimage/#{house.id}" %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if @role == 'admin'  %>
+  <%= link_to 'New House', new_house_path %>
+<% end %>
+
+<% if @role == "admin" %>
+  <%= link_to 'Back to Dashboard', admin_path %> <br>
+<% elsif @role == "realtor" %>
+  <%= link_to 'Back to Dashboard', realtor_path(@realtor.id) %> <br>
+<% else %>
+  <%= link_to 'Back to Dashboard', househunter_path(@househunter.id) %> <br>
+<% end %>

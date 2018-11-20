@@ -1,0 +1,86 @@
+<h1>House Details:</h1>
+<br>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @company_name %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @house.location %>
+</p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @house.area %>
+</p>
+
+<p>
+  <strong>Year built:</strong>
+  <%= @house.year_built %>
+</p>
+
+<p>
+  <strong>Style:</strong>
+  <%= @house.style %>
+</p>
+
+<p>
+  <strong>List prize:</strong>
+  <%= @house.list_prize %>
+</p>
+
+<p>
+  <strong>Floor count:</strong>
+  <%= @house.floor_count %>
+</p>
+
+<p>
+  <strong>Basement:</strong>
+  <%= @house.basement %>
+</p>
+
+<p>
+  <strong>Owner name:</strong>
+  <%= @house.owner_name %>
+</p>
+<% if @role == "househunter" %>
+
+  <% if @interested_househunter == nil%>
+    <%= form_for @househunter, url: '/house_interested' do |f| %>
+      <input type="hidden" id="id" name="id" value="<%= @houseid %>"/>
+      <%= f.submit "Interested in this house" %><br>
+    <% end %>
+
+  <% else %>
+    <%= form_for @househunter, url: '/house_not_interested' do |f| %>
+      <input type="hidden" id="id" name="id" value="<%= @houseid %>"/>
+      <%= f.submit "Not Interested in this house" %><br>
+    <% end %>
+  <% end %>
+
+  <br>
+  <%= link_to 'Submit an enquiry', test_path(@houseid) %>
+
+<% end %>
+
+<% if @role != "househunter" %>
+  <%= link_to 'Edit', edit_house_path(@house) %><br>
+<% end %>
+
+<br>
+<%= link_to 'Back', @previous_url %>
+<br>
+<% if @role == "admin" %>
+  <%= link_to 'Back to Dashboard', admin_path %> <br>
+<% elsif @role == "househunter" %>
+  <%= link_to 'Back to Dashboard', househunter_path(@househunter.id) %> <br>
+<% else %>
+  <%= link_to 'Back to Dashboard', realtor_path(@realtor.id) %> <br>
+<% end %>
+
+<% @house.images.each do |image| %>
+  <%= image_tag image %> <br/>
+<% end %>

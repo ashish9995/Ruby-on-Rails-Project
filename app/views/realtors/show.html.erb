@@ -1,0 +1,47 @@
+<h1>Realtor Dashboard</h1>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @realtor.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @realtor.last_name %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <% if @company != nil %>
+    <%= @company.name %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @realtor.phone_number %>
+</p>
+
+<% if @role == "realtor" %>
+  <%= link_to 'Edit profile and company', edit_realtor_path(@realtor) %> <br>
+  <br><h2> Houses </h2>
+  <%= link_to 'List new House', new_house_path %><br>
+  <%= link_to 'View and Edit houses listed by you', rel_houses_path %><br>
+  <%= link_to 'View all listed houses', houses_path %><br>
+  <h2> Buyers </h2>
+  <%= link_to 'View list of potential buyers', potential_path %><br>
+  <%= link_to 'View list of all inquiries', inquiries_path %><br>
+<% end %><br>
+<%= link_to 'Logout', logout_path %>
+
+<br>
+<% if @role == "admin" %>
+  <%= link_to 'Back to Dashboard', admin_path %> <br>
+<% end %>
+
+<br>
+<% if @switchable == true %>
+  <%= link_to "Switch to House Hunter's profile", "/rswitch"%> <br>
+<% end %>

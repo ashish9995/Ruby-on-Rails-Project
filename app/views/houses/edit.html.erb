@@ -1,0 +1,42 @@
+<h1>Editing House</h1>
+
+<%= form_for @house do |f| %>
+
+  Company:
+  <% if @role == 'admin' %>
+    <% options = options_from_collection_for_select(@companies, 'id', 'name') %>
+    <%= f.select "companies_id", options %><br>
+  <% else %>
+    <%= @company %><br>
+  <% end %>
+  <%= f.label :location %>
+  <%= f.text_area :location %>
+  <%= f.label :area %>
+  <%= f.text_field :area %>
+  <%= f.label :year_built %>
+  <%= f.number_field :year_built %>
+  <%= f.label :style %>
+  <%= f.text_field :style %>
+  <%= f.label :list_prize %>
+  <%= f.number_field :list_prize %><br>
+  <%= f.label :floor_count %>
+  <%= f.number_field :floor_count %><br>
+  <%= f.label :owner_name %>
+  <%= f.text_field :owner_name %><br>
+  Basement:  <%= f.check_box :basement %><br>
+  Add MORE images: <br><%= f.file_field :images, multiple: true %><br><br>
+  <%= f.submit "Update House" %>
+<% end %>
+
+
+<%= link_to 'Show', @house %>
+
+<%= link_to 'Back', @previous_url %>
+
+
+<% if @role == 'admin' %>
+  <%= link_to 'Back to Dashboard', admin_path %> <br>
+<% elsif @role == 'realtor' %>
+  <%= link_to 'Back to Dashboard', realtor_path(@realtor) %> <br>
+<% end %>
+

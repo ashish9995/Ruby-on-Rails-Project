@@ -1,0 +1,27 @@
+<h1>Editing Realtor</h1>
+
+<%= form_for @realtor do |f| %>
+  Company<br>
+  <% options = options_from_collection_for_select(@companies, 'id', 'name') %>
+  <%= f.select "companies_id", options %><br>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+  <%= f.label :phone_number %>
+  <%= f.number_field :phone_number %><br>
+  Change password (Leave blank to keep the same)<br><input type="password" name="user[password]" id="user_password" /><br><br>
+  <%= f.submit "Update Fields" %><br><br>
+<% end %>
+
+<%= link_to 'Show', @realtor %> <br>
+<%= link_to 'Create a new company', new_company_path %>  <br>
+<% if @company != nil %>
+  <%= link_to 'Edit your company', edit_company_path(@company) %> <br>
+<% end %>
+
+<% if @role == "admin" %>
+  <%= link_to 'Back to Dashboard', admin_path %> <br>
+<% else %>
+  <%= link_to 'Back to Dashboard', realtor_path(@realtor.id) %> <br>
+<% end %>

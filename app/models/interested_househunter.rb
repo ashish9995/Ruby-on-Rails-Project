@@ -1,0 +1,2 @@
+class InterestedHousehunter < ApplicationRecord
+end

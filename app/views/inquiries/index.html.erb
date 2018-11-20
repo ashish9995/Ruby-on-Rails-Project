@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Inquiries</h1>
+
+<table cellspacing="10">
+  <thead>
+    <tr>
+      <th>Subject</th>
+      <th>Content</th>
+      <th>House</th>
+      <th>Reply</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%if @inquiries !=nil && @inquiries != " "%>
+    <% @inquiries.each do |inquiry| %>
+      <tr>
+        <td><%= inquiry.subject %></td>
+        <td><%= inquiry.content %></td>
+        <td><%= link_to 'Show house', house_path(inquiry.houses_id) %></td>
+        <td><%= inquiry.reply %></td>
+        <% if @role == "realtor" %>
+          <td><%= link_to 'Reply', edit_inquiry_path(inquiry) %></td>
+        <% else %>
+          <td><%= link_to 'Edit', edit_inquiry_path(inquiry) %></td>
+          <td><%= button_to 'Destroy', inquiry, method: :delete, :onclick => "return confirm('Are you sure you want to delete this inquiry?')" %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+    <%else %>
+     <%redirect_to "http://localhost:3000/houses" %>
+    <%end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if @role == "househunter" %>
+  <%= link_to 'Back to Dashboard', househunter_path(@househunter.id) %> <br>
+<% elsif @role == "realtor" %>
+  <%= link_to 'Back to Dashboard', realtor_path(@realtor.id) %> <br>
+<% elsif @role == "admin" %>
+  <%= link_to 'Back to Dashboard', admin_path%> <br>
+<% end %>

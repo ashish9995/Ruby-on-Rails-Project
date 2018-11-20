@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Users</h1>
+
+<table cellspacing="10">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Is admin</th>
+      <th>Is realtor</th>
+      <th>Is househunter</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email_id %></td>
+        <td><%= user.is_admin %></td>
+        <td><%= user.is_realtor %></td>
+        <td><%= user.is_househunter %></td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= button_to 'Destroy', user, method: :delete, :onclick => "return confirm('Are you sure you want to delete this user?')" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_user_path %>
+<%= link_to 'Back to Dashboard', admin_path %> <br>

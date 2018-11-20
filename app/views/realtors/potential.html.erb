@@ -1,0 +1,36 @@
+<h1>Potential buyers</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>House</th>
+    <th>First name</th>
+    <th>Last name</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+
+  <%# @fu.each do |k,v| %>
+    <%# v.each do |f| %>
+<!--      <tr>-->
+<!--        <td><%#=f.first_name %></td>-->
+<!--        <td><%#=f.last_name %></td>-->
+<!--      </tr>-->
+    <%#end %>
+  <%# end %>
+
+  <% @potential.each do |potential| %>
+    <tr>
+      <td><%= link_to 'Show house', house_path(potential.id) %></td>
+      <td><%= potential.first_name %></td>
+      <td><%= potential.last_name %></td>
+    </tr>
+  <% end %>
+
+
+  </tbody>
+</table>
+<%= link_to 'Back ', "/realtors/#{params[:id]}" %> <br>
+<br>

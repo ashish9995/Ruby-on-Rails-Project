@@ -1,0 +1,21 @@
+<h1>Editing Househunter</h1>
+
+<%= form_for @househunter do |f| %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+  <%= f.label :phone %>
+  <%= f.number_field :phone %>
+  <%= f.label :contact_method %>
+  <%= f.number_field :contact_method %><br>
+  Change password (Leave blank to keep the same)<br><input type="password" name="user[password]" id="user_password" /><br><br>
+  <%= f.submit "Update Fields" %><br><br>
+<% end %>
+
+<br>
+<% if @role == "admin" %>
+  <%= link_to 'Back to Dashboard', admin_path %> <br>
+<% else %>
+  <%= link_to 'Back to Dashboard', househunter_path(@househunter.id) %> <br>
+<% end %>

@@ -1,0 +1,46 @@
+<h1>Househunter Dashboard</h1>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @househunter.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @househunter.last_name %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @househunter.phone %>
+</p>
+
+<p>
+  <strong>Contact method:</strong>
+  <%= @househunter.contact_method %>
+</p>
+
+<% if @role == "househunter" %>
+  <%= link_to 'Edit Profile', edit_househunter_path(@househunter) %>
+  <br>
+  <%= link_to 'Show Houses', houses_path %>
+  <br>
+  <%= link_to 'Show Real estate companies', companies_path %>
+  <br>
+  <%= link_to 'Show Inquiries', househunter_inquiries_path(@househunter) %>
+
+  <br>
+  <%= link_to 'Search Houses', input_path %><br>
+<% end %>
+<br>
+<% if @role == "admin" %>
+  <%= link_to 'Back to Dashboard', admin_path %> <br>
+<% end %>
+<br>
+<% if @switchable == true %>
+  <%= link_to "Switch to Realtor's profile", "/hswitch"%> <br>
+<% end %>
+
+<br>
+<%= link_to 'Logout', logout_path %><br>

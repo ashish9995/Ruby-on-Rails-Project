@@ -1,0 +1,2 @@
+class Househunter < ApplicationRecord
+end

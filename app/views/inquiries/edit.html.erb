@@ -1,0 +1,69 @@
+<% if @role == "househunter" or @role == "admin" %>
+  <h1>Editing Inquiry</h1>
+<% elsif @role == "realtor" %>
+  <h1>Reply to an Inquiry</h1>
+<% end %>
+
+<%= form_for @inquiry do |form| %>
+  <% if @inquiry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@inquiry.errors.count, "error") %> prohibited this inquiry from being saved:</h2>
+
+      <ul>
+        <% @inquiry.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @role == "househunter" or @role == "admin" %>
+
+    <div class="field">
+      <%= form.label :subject %>
+      <%= form.text_field :subject %>
+
+    </div>
+
+    <div class="field">
+      <%= form.label :content %>
+      <%= form.text_area :content %>
+    </div>
+
+  <% elsif @role == "realtor" %>
+
+    <div class="field">
+      <%= form.label :subject %>
+      <%= form.text_field :subject, :readonly => true %>
+
+    </div>
+
+    <div class="field">
+      <%= form.label :content %>
+      <%= form.text_area :content, :readonly => true %>
+    </div>
+
+    <div class="field">
+      <%= form.label :reply %>
+      <%= form.text_area :reply %>
+    </div>
+
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @inquiry %> |
+<%= link_to 'Back', inquiries_path %>
+
+<br>
+<% if @role == "househunter" %>
+  <%= link_to 'Back to Dashboard', househunter_path(@househunter.id) %> <br>
+<% elsif @role == "realtor" %>
+  <%= link_to 'Back to Dashboard', realtor_path(@realtor.id) %> <br>
+<% elsif @role == "admin" %>
+  <%= link_to 'Back to Dashboard', admin_path %> <br>
+<% end %>
+

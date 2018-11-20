@@ -1,0 +1,38 @@
+<%= form_with(model: househunter, local: true) do |form| %>
+  <% if househunter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(househunter.errors.count, "error") %> prohibited this househunter from being saved:</h2>
+
+      <ul>
+        <% househunter.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone %>
+    <%= form.number_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact_method %>
+    <%= form.text_field :contact_method %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

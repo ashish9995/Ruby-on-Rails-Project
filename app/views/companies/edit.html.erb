@@ -1,0 +1,11 @@
+<h1>Editing Company</h1>
+
+<%= render 'form', company: @company %>
+
+<%= link_to 'Show', @company %>
+<br>
+<% if @role == "admin" %>
+  <%= link_to 'Back to Dashboard', admin_path %> <br>
+<% elsif @role == "realtor" %>
+  <%= link_to 'Back to Dashboard', realtor_path(@realtor) %> <br>
+<% end %>

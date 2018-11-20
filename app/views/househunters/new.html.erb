@@ -1,0 +1,13 @@
+<h1>New Househunter</h1>
+
+<%= form_for @househunter do |f| %>
+  First Name<br><%= f.text_field :first_name %><br>
+  Last Name<br><%= f.text_field :last_name %><br>
+  Email<br><input type="email" name="user[email_id]" id="user_email_id" /><br>
+  Password<br><input type="password" name="user[password]" id="user_password" /><br>
+  <%= f.submit "Sign up" %><br>
+<% end %>
+
+<% if @role == "admin" %>
+  <%= link_to 'Back to Dashboard', admin_path %> <br>
+<% end %>

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Welcome to Property Management Portal</h1>
+
+<%= form_for :login, url: login_path do |f| %>
+  <%= f.label :email %>
+  <%= f.email_field :email%>
+
+  <%= f.label :password %>
+  <%= f.password_field :password%><br>
+  Login as:<br>
+  <%= f.radio_button :role , "realtor" %> Realtor<br>
+  <%= f.radio_button :role , "househunter" %> House Hunter<br>
+  <%= f.submit "Log in" %>
+<% end %>
+<br>
+<%= link_to 'Sign up as a Househunter', new_househunter_path %>
+<%= link_to 'Sign up as a Realtor', new_realtor_path %>
+<br>
+<a href="/auth/google_oauth2"> Realtor Google Signin </a>
